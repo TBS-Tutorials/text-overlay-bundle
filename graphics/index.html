@@ -16,5 +16,11 @@
 </head>
 <body>
 <div id="text-box">Hello Stream!</div>
+<script>
+	const textReplicant = nodecg.Replicant('textReplicant');
+	textReplicant.on('change', value => {
+		document.getElementById('text-box').innerHTML = value;
+	});
+</script>
 </body>
 </html>
