@@ -9,11 +9,17 @@
 	<label for="overlay-text">Overlay Text</label>
 	<input id="overlay-text">
 	<button type="submit">Update</button>
+	<button class="set-text" data-text="Starting Soon">Starting</button>
+	<button class="set-text" data-text="Welcome to the Stream">Welcome</button>
+	<button class="set-text" data-text="Be Right Back">BRB</button>
+	<button class="set-text" data-text="Thanks for Watching">Thanks</button>
+	<button class="set-text" data-text="">Blank</button>
 </form>
 <script>
 	const textReplicant = nodecg.Replicant('textReplicant');
 	const textBox = document.getElementById('overlay-text');
 	const textForm = document.getElementById('update-overlay');
+	const buttons = document.getElementsByClassName('set-text');
 
 	textReplicant.on('change', value => {
 		textBox.value = value;
@@ -23,6 +29,11 @@
 		e.preventDefault();
 		textReplicant.value = textBox.value;
 	});
+	Array.from(buttons).forEach(button => {
+		button.addEventListener('click', e => {
+			textReplicant.value = e.target.dataset.text;
+		})
+	})
 </script>
 </body>
 </html>
